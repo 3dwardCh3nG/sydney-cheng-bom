@@ -10,12 +10,6 @@
     <packaging>pom</packaging>
     <name>sydney-cheng-bom</name>
 
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>9</version>
-    </parent>
-
     <licenses>
         <license>
             <name>MIT License</name>
