@@ -25,7 +25,14 @@ jobs:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
         run: |
-          mvn -X -B gpg:sign -Dgpg.keyname=${{ secrets.OSSRH_GPG_KEY_NAME }} -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} -Dgpg.executable="./scripts/runGPG.sh" deploy -DaltDeploymentRepository=${{ secrets.DEPLOYMENT_REPOSITORY_ID }}::${{ secrets.DEPLOYMENT_REPOSITORY_URL }} --settings=${{ github.workspace }}/.mvn/settings.xml
+          mvn -X -B \ 
+            gpg:sign \ 
+            -Dgpg.keyname=${{ secrets.OSSRH_GPG_KEY_NAME }} \ 
+            -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \ 
+            -Dgpg.executable="${gpg.executable} --pinentry-mode loopback"\ 
+            deploy \ 
+            -DaltDeploymentRepository=${{ secrets.DEPLOYMENT_REPOSITORY_ID }}::${{ secrets.DEPLOYMENT_REPOSITORY_URL }} \ 
+            --settings=${{ github.workspace }}/.mvn/settings.xml
       - uses: actions/upload-artifact@v3.1.3
         if: always()
         with:
