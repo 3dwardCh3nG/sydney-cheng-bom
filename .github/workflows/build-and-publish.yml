@@ -26,7 +26,7 @@ jobs:
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
         run: |
           mvn -X -B \ 
-            gpg:sign \ 
+            org.apache.maven.plugins:maven-gpg-plugin:3.1.0:sign \ 
             -Dgpg.keyname=${{ secrets.OSSRH_GPG_KEY_NAME }} \ 
             -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \ 
             -Dgpg.executable="${gpg.executable} --pinentry-mode loopback"\ 
