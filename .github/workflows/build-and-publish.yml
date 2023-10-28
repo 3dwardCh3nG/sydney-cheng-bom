@@ -18,9 +18,11 @@ jobs:
         with:
           distribution: zulu
           java-version: 17
-      - name: Receive GPG Key
+      - name: Install GPG secret key
         run: |
-          gpg --keyserver ${{ secrets.GPG_KEYSERVER_URL }} --recv-keys ${{ secrets.OSSRH_GPG_KEY_ID }}
+          # Install gpg secret key
+          cat <(echo -e "${{ secrets.OSSRH_GPG_SECRET_KEY }}") | gpg --batch --import
+          # Verify gpg secret key
           gpg --list-secret-keys --keyid-format LONG
       - name: Maven Sign and Publish
         env:
