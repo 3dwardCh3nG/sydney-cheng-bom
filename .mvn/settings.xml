@@ -20,7 +20,6 @@
                 </repository>
             </distributionManagement>
             <properties>
-                <gpg.executable>gpg2</gpg.executable>
                 <gpg.keyname>${ env.GPG_KEY_NAME }</gpg.keyname>
                 <gpg.passphrase>${ env.GPG_SECRET_KEY_PASSWORD }</gpg.passphrase>
                 <altSnapshotDeploymentRepository>github::https://maven.pkg.github.com/3dwardCh3nG/spring-openai</altSnapshotDeploymentRepository>
