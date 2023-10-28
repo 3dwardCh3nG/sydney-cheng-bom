@@ -30,15 +30,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          GPG_KEY_NAME: ${{ secrets.OSSRH_GPG_KEY_NAME }}
+          GPG_SECRET_KEY_PASSWORD: ${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }}
         run: |
-          mvn -X -B org.apache.maven.plugins:maven-gpg-plugin:3.1.0:sign \
-            -Dgpg.keyname=${{ secrets.OSSRH_GPG_KEY_NAME }} \
-            -Dgpg.passphrase=${{ secrets.OSSRH_GPG_SECRET_KEY_PASSWORD }} \
-            deploy \
-            -DaltSnapshotDeploymentRepository=${{ secrets.DEPLOYMENT_REPOSITORY_ID }}::${{ secrets.SNAPSHOT_DEPLOYMENT_REPOSITORY_URL }} \
-            -DaltReleaseDeploymentRepository=${{ secrets.DEPLOYMENT_REPOSITORY_ID }}::${{ secrets.RELEASE_DEPLOYMENT_REPOSITORY_URL }} \
-            -Daether.checksums.algorithms="MD5,SHA-1,SHA-256,SHA-512" \
-            --settings=${{ github.workspace }}/.mvn/settings.xml
+          mvn -X -B deploy -Daether.checksums.algorithms="MD5,SHA-1,SHA-256,SHA-512" -P publish --settings=${{ github.workspace }}/.mvn/settings.xml
       - uses: actions/upload-artifact@v3.1.3
         if: always()
         with:
