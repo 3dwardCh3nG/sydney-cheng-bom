@@ -30,6 +30,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
+          DEPLOYMENT_REPOSITORY_ID: ${{ secrets.DEPLOYMENT_REPOSITORY_ID }}
+          SNAPSHOT_DEPLOYMENT_REPOSITORY_URL: ${{ secrets.SNAPSHOT_DEPLOYMENT_REPOSITORY_URL }}
+          RELEASE_DEPLOYMENT_REPOSITORY_URL: ${{ secrets.RELEASE_DEPLOYMENT_REPOSITORY_URL }}
         run: |
           mvn -X -B org.apache.maven.plugins:maven-gpg-plugin:3.1.0:sign \
             -Dgpg.keyname=${{ secrets.OSSRH_GPG_KEY_NAME }} \
