@@ -21,6 +21,8 @@ jobs:
       - name: Receive GPG Key
         run: |
           gpg --keyserver ${{ secrets.GPG_KEYSERVER_URL }} --recv-keys ${{ secrets.OSSRH_GPG_KEY_ID }}
+          # Verify gpg secret key
+          gpg --list-secret-keys --keyid-format LONG
       - name: Maven Sign and Publish
         env:
           GITHUB_ACTOR: '3dwardCh3nG'
