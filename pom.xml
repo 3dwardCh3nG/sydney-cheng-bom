@@ -35,11 +35,15 @@
     </issueManagement>
 
     <properties>
+        <!-- Dependencies -->
         <spring-boot-dependencies.version>3.1.5</spring-boot-dependencies.version>
         <spring-cloud-dependencies.version>2022.0.4</spring-cloud-dependencies.version>
         <json.version>20231013</json.version>
         <jtokkit.version>0.6.1</jtokkit.version>
-        <!-- Plugin Versions -->
+        <!-- Testing Dependencies -->
+        <junit-bom.version>5.10.0</junit-bom.version>
+        <mockito-bom.version>5.6.0</mockito-bom.version>
+        <!-- Maven Plugins -->
         <maven-clean-plugin.version>3.3.1</maven-clean-plugin.version>
         <maven-dependency-plugin.version>3.6.1</maven-dependency-plugin.version>
         <maven-javadoc-plugin.version>3.6.0</maven-javadoc-plugin.version>
@@ -96,6 +100,17 @@
                 <groupId>com.knuddels</groupId>
                 <artifactId>jtokkit</artifactId>
                 <version>${jtokkit.version}</version>
+            </dependency>
+            <!-- Testing -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit-bom.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-bom</artifactId>
+                <version>${mockito-bom.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
